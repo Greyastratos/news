@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+li{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-color: rgb(105, 102, 98);
+}

@@ -65,6 +65,41 @@ const get_news = async(req, res) => {
         });
     }
 };
+const get_archived = async(req, res) => {
+    try {
+        let newsRes = await news_model.find({ removed: false }).sort({ date: -1 });
+        // archiveDate: { $ne: null }
+        return res.status(200).send({
+            success: true,
+            status: 200,
+            data: newsRes
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(404).send({
+            success: false,
+            status: 404,
+            Message: error
+        });
+    }
+};
+const get_unarchived = async (req, res) => {
+    try {
+        let newsRes = await news_model.find({ removed: false, archiveDate: null }).sort({ date: -1 });
+        return res.status(200).send({
+            success: true,
+            status: 200,
+            data: newsRes
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(404).send({
+            success: false,
+            status: 404,
+            Message: error
+        });
+    }
+};
 
 const create_news = async (req, res) => {
     try {
@@ -96,5 +131,7 @@ module.exports = {
     remove_News,
     archive_News,
     get_news,
-    create_news
+    create_news,
+    get_archived,
+    get_unarchived
 };
