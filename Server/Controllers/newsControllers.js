@@ -83,7 +83,7 @@ const get_archived = async(req, res) => {
         });
     }
 };
-const get_unarchived = async (req, res) => {
+const get_unarchived = async ( res) => {
     try {
         let newsRes = await news_model.find({ removed: false, archiveDate: null }).sort({ date: -1 });
         return res.status(200).send({

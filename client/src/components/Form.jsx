@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const API_URL = 'http://localhost:5000';
+const refresh = () => {
+  window.location.reload();
+};
 
-const Form = () => {
+const NewsForm = () => {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -27,6 +30,8 @@ const Form = () => {
       const response = await axios.get(`${API_URL}/get-news`);
 
       setFormData({ title: '', description: '', content: '', author: '' });
+
+      refresh()
     } catch (error) {
       console.error('Error creating news:', error);
     }
@@ -54,4 +59,4 @@ const Form = () => {
   );
 }
 
-export default Form;
+export default NewsForm;

@@ -6,7 +6,12 @@
 li{
     list-style: none;
     display: flex;
+    align-items: center;
     flex-direction: column;
+    justify-content: center;
     gap: 16px;
     background-color: rgb(105, 102, 98);
+    border: solid rgb(8, 8, 54) 8px;
+    opacity: 1;
+    transition: opacity 0.5s ease; 
 }

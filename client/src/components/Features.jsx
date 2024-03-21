@@ -3,7 +3,9 @@ import axios from 'axios';
 
 //Nomrmalmente aqui pondioa una variable .env pero por cuestiones practicas lo deje de esta manera
 const API_URL = 'http://localhost:5000';
-
+const refresh = () => {
+  window.location.reload();
+};
 const FetchNews = async () => {
     try {
       const response = await axios.get(`${API_URL}/get-news`);
@@ -19,7 +21,10 @@ const Archive=({ newsId}) =>{
      await axios.put(`${API_URL}/archive-news`, { _id: newsId });
     } catch (error) {
       console.error('Error archiving news:', error);
+    } finally{
+      refresh()
     }
+   
   };
 
   return (
@@ -35,6 +40,8 @@ const Remove=({ newsId})=> {
         await axios.put(`${API_URL}/remove-news`, { _id: newsId });
       } catch (error) {
         console.error('Error archiving news:', error);
+      } finally{
+        refresh()
       }
     };
   
